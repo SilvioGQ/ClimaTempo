@@ -13,8 +13,9 @@ function App() {
   
   const [place, setPlace] = useState();
   return (
-    <div style={{ margin: 0, padding: 0 }}>
-      <Header />
+    <div style={{ display:'flex', flexDirection:"row" ,width:'100%' }}>
+      <h1 style={{fontSize:64,color:'#fff'}}>Acesse agora a temperatura de qualquer lugar do mundo</h1>
+      <div style={{backgroundColor:'#fff', borderRadius:10,padding:24, alignItems:'center'}}>
       <div style={{display:'flex', flexDirection:'row'}}>
       <Input inputValue={inputValue} setInputValue={setInputValue} />
       <Button
@@ -25,6 +26,8 @@ function App() {
       {place && (
         <CitiesOptions setPlace={setPlace} setSelectedCity={setSelectedCity} inputValue={inputValue}/>
       )}
+
+      </div>
       {selectedCity && (
         <CityWeather selectedCity={selectedCity} />
       )}
