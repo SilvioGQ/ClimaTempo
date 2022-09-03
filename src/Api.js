@@ -5,7 +5,7 @@ const baseURL = "http://api.openweathermap.org/geo/1.0";
 export async function getAll(lat, lon) {
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=7&appid=f404a5ed8e3a5932e8df1193efaa7a35&units=metric&lang=pt_br`
+      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=8&appid=f404a5ed8e3a5932e8df1193efaa7a35&units=metric&lang=pt_br`
     );
     return response.data;
   } catch (err) {
