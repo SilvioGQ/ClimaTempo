@@ -8,6 +8,7 @@ function CitiesOptions({ inputValue, setSelectedCity, setPlace }) {
     let res = await getByName(inputValue);
     console.log(res);
     setLocationWeather(res);
+
     return res;
   };
   useEffect(() => {
@@ -19,7 +20,7 @@ function CitiesOptions({ inputValue, setSelectedCity, setPlace }) {
         locationWeather.map((i) => {
           return (
             <div>
-            <button style={{ fontSize:16, backgroundColor:'rgb(35,70,138,73)', color:'white', width:510, marginTop:14, height:50, border:'none', borderRadius:5, cursor:'pointer' }} onClick={()=>{setPlace(false); setSelectedCity({name:i.name, country:i.country, lat:i.lat, lon:i.lon, state: i.state})}}>
+            <button style={{ fontSize:16, backgroundColor:'rgb(35,70,138,73)', color:'white', width:510, marginTop:14, height:50, border:'none', borderRadius:5, cursor:'pointer' }} onClick={()=>{ setSelectedCity({name:i.name, country:i.country, lat:i.lat, lon:i.lon, state: i.state})}}>
               {i.name},{i.state},{i.country}
             </button>
             <br/>
