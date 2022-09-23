@@ -13,12 +13,12 @@ function CityWeather({ selectedCity }) {
     return res;
   };
   const get2 = async () => {
-    let days = day+8
-    let chart = await getToCharts(selectedCity.lat, selectedCity.lon,days);
-    if(day>7){
-      setLocationWeatherChart(chart)
-    }else{
-      setLocationWeatherChart(chart)
+    let days = day + 8;
+    let chart = await getToCharts(selectedCity.lat, selectedCity.lon, days);
+    if (day > 7) {
+      setLocationWeatherChart(chart);
+    } else {
+      setLocationWeatherChart(chart);
     }
     return chart;
   };
@@ -32,6 +32,8 @@ function CityWeather({ selectedCity }) {
   let arrayTempMax = [];
   let arrayTempMin = [];
   let arrayHumidity = [];
+  console.log(arrayTemp);
+  console.log(day);
   const B = (props) => <p style={{ fontWeight: "700" }}>{props.children}</p>;
   return (
     <div>
@@ -126,9 +128,23 @@ function CityWeather({ selectedCity }) {
             <div>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <p>Data: </p>
-                {day > 0 && <button onClick={() => {if(day>7) return setDay(day-8)}}>Anterior</button>}
+                {day > 0 && (
+                  <button
+                    onClick={() => {
+                      if (day > 7) return setDay(day - 8);
+                    }}
+                  >
+                    Anterior
+                  </button>
+                )}
                 <B> {locationWeather.list[day].dt_txt.substr(0, 10)}</B>
-                <button onClick={() => {if(day<28) return setDay(day+8)}}>Próximo</button>
+                <button
+                  onClick={() => {
+                    if (day < 28) return setDay(day + 8);
+                  }}
+                >
+                  Próximo
+                </button>
               </div>
               <div style={{ display: "flex", flexDirection: "row" }}>
                 <p>Descrição: </p>
@@ -163,7 +179,7 @@ function CityWeather({ selectedCity }) {
         </div>
         <div>
           <div>
-            <p>Variação de temperatura para amanhã.</p>
+            <p>Variação de temperatura.</p>
             <VictoryChart width={600}>
               <VictoryLine
                 style={{
@@ -171,12 +187,12 @@ function CityWeather({ selectedCity }) {
                   parent: { border: "2px solid #fff", fill: "#fff" },
                   labels: { color: "#fff", fill: "#fff" },
                 }}
-                data={arrayTemp}
+                data={arrayTemp.slice(day, day + 8)}
               />
             </VictoryChart>
           </div>
           <div>
-            <p>Percentual de umidade para amanhã.</p>
+            <p>Percentual de umidade.</p>
             <VictoryChart
               width={600}
               minDomain={{ y: 0 }}
@@ -184,7 +200,7 @@ function CityWeather({ selectedCity }) {
             >
               <VictoryBar
                 style={{ data: { fill: "#fff" } }}
-                data={arrayHumidity}
+                data={arrayHumidity.slice(day, day + 8)}
                 barRatio={0.3}
               />
             </VictoryChart>

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.27.2",
+    "mongodb": "^4.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "0.9.5",
@@ -12,6 +13,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "backend": "node src/backend/app.js",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
