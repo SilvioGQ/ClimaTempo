@@ -1,15 +1,15 @@
 
-const Sequelize = require('sequelize')
+// const Sequelize = require('sequelize')
 
 
-sequelize = new Sequelize('nodejsDB','root','',{
-    host:'localhost',
-    dialect:'mysql',
-    underscored: true
+// sequelize = new Sequelize('nodejsDB','root','',{
+//     host:'localhost',
+//     dialect:'mysql',
+//     underscored: true
     
-})
+// })
 
-module.exports = {
-    Sequelize: Sequelize,
-    sequelize: sequelize
-}
+// module.exports = {
+//     Sequelize: Sequelize,
+//     sequelize: sequelize
+// }
