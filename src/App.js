@@ -6,12 +6,14 @@ import Button from "./components/Button";
 import Input from "./components/Input";
 import CityWeather from "./components/CityWeather";
 import CitiesOptions from "./components/CitiesOptions";
+import { getAllHistory } from "./Api";
 // Para duramte a aula eu posso criar um botão que vai gerando gráficos para cada dia da semana.
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [selectedCity, setSelectedCity] = useState();
-  
+  const [mongo, setMongo] = useState()
   const [place, setPlace] = useState();
+  console.log(mongo)
   return (
     <div style={{ display:'flex', flexDirection:"colunm", height:'100vh', flex:1 }}>
       {selectedCity ? 
@@ -45,7 +47,9 @@ function App() {
       {place && (
         <CitiesOptions setPlace={setPlace} setSelectedCity={setSelectedCity} inputValue={inputValue}/>
       )}
-
+      <button onClick={async()=>{let res = await getAllHistory(); if(res) return setMongo(res.city);}}>
+      <p style={{color:'#000'}}><i>Ver Registro do banco de dados</i></p>
+      </button>
       </div>
     </div>
     )

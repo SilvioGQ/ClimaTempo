@@ -2,6 +2,7 @@ import axios from "axios";
 
 const baseURL = "http://api.openweathermap.org/geo/1.0";
 
+const baseURLocal = "http://localhost:8080";
 // mongo senha OwKzE9OzngkcIVPm
 export async function getAll(lat, lon) {
   try {
@@ -44,5 +45,33 @@ export async function getAllDays(lat, lon) {
     return response.data;
   } catch (err) {
     console.error("ops! ocorreu um erro" + err);
+  }
+}
+export async function saveCity(data) {
+  try {
+    const response = await axios.post(`${baseURLocal}/clima`, {
+      ...data,
+    });
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getAllHistory() {
+  try {
+    const response = await axios.get(`${baseURLocal}/clima`);
+    return response.data;
+  } catch (error) {
+    return null;
+  }
+}
+
+export async function getCityHistory(id) {
+  try {
+    const response = await axios.get(`${baseURLocal}/clima/${id}`);
+    return response.data;
+  } catch (error) {
+    return null;
   }
 }
