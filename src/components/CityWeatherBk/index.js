@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { getAll, getToCharts, saveCity } from "../../Api";
+import { getCityHistory } from "../../Api";
 import Button from "../Button";
 import { VictoryChart, VictoryLine, VictoryBar } from "victory";
-function CityWeather({ selectedCity }) {
+function CityWeatherBk({ selectedCity }) {
   const [locationWeather, setLocationWeather] = useState();
   const [locationWeatherChart, setLocationWeatherChart] = useState();
   const [day, setDay] = useState(0);
   const get = async () => {
-    let res = await getAll(selectedCity.lat, selectedCity.lon);
-    let createOnApi = await saveCity(res);
+    console.log(selectedCity)
+    let res = await getCityHistory(selectedCity);
+    console.log(res);
     setLocationWeather(res);
-    return res;
-  };
-  const get2 = async () => {
     let days = day + 8;
-    let chart = await getToCharts(selectedCity.lat, selectedCity.lon, days);
+    let chart = res
     if (day > 7) {
       setLocationWeatherChart(chart);
     } else {
       setLocationWeatherChart(chart);
     }
-    return chart;
+    return res;
   };
   useEffect(() => {
     get();
-  }, []);
-  useEffect(() => {
-    get2();
   }, [day]);
   let arrayTemp = [];
   let arrayTempMax = [];
@@ -46,9 +41,7 @@ function CityWeather({ selectedCity }) {
         }}
       >
         <h1 style={{ fontSize: 48, color: "#fff", fontWeight: 200 }}>
-          {selectedCity.name}
-          {selectedCity.state ? "," + selectedCity.state : null},{" "}
-          {selectedCity.country}
+          {locationWeather && locationWeather.city.name}
         </h1>
         <div>
           {locationWeather &&
@@ -211,4 +204,4 @@ function CityWeather({ selectedCity }) {
   );
 }
 
-export default CityWeather;
+export default CityWeatherBk;
